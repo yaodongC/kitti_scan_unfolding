@@ -95,8 +95,8 @@ def projection(points: np.array, *channels, image_size: tuple = (64, 2000)):
     proj_row = get_kitti_rows(points)
 
     if np.any(proj_row >= image_size[0]) or np.any(proj_column >= image_size[1]):
-        print("max row  {} is larger than defined image row {}".format(np.maximum(proj_row),image_size[0]))
-        print("max column  {} is larger than defined image column {}".format(np.maximum(proj_column),image_size[1]))
+        print("rows shape: {}, min: {}, max: {} is larger than defined image row {}".format(proj_row.shape, np.min(proj_row), np.max(proj_row),image_size[0]))
+        print("cols shape: {}, min: {}, max: {} is larger than defined image column {}".format(proj_column.shape, np.min(proj_column), np.max(proj_column),image_size[1]))
         raise IndexError(
             "Cannot find valid image indices for this point cloud and image size. "
             "Are you sure you entered the correct image size? This function only works "
